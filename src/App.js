@@ -1,4 +1,3 @@
-import { BrowserRouter, Router } from "react-router-dom";
 import BgOverlay from "./components/BgOverlay/BgOverlay";
 import RootNavigator from "./components/RootNavigator";
 
