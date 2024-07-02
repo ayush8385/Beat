@@ -1,11 +1,11 @@
-import { API_CONSTANTS, client_id, redirect_uri } from "../../constants";
+import { API_CONSTANTS } from "../../constants";
 import Logo from "../Logo";
 import "./Login.css";
 const Login = () => {
-
+  const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
   const authoriseSpotifyUser = () => {
     let url = API_CONSTANTS.AUTHORIZE_API;
-    url += "?client_id=" + client_id;
+    url += "?client_id=" + process.env.REACT_APP_CLIENT_ID;
     url += "&response_type=code";
     url += "&redirect_uri=" + encodeURI(redirect_uri);
     url += "&show-dialogue=true";
@@ -28,10 +28,7 @@ const Login = () => {
       >
         Welcome to Beats
       </p>
-      <div
-        onClick={() => authoriseSpotifyUser()}
-        class="button-box"
-      >
+      <div onClick={() => authoriseSpotifyUser()} class="button-box">
         <p>Login With Spotify</p>
         <img
           width="30"

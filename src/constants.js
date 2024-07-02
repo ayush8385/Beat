@@ -1,7 +1,3 @@
-export const client_id = "72253b95f803465f8014adaed3585731";
-export const client_secret = "c1718e179b3a42d3af249d76710bd7ca";
-export const redirect_uri = "https://192.168.1.3:3000";
-
 export const API_CONSTANTS = {
   AUTHORIZE_API: "https://accounts.spotify.com/authorize",
   TOKEN_API: "https://accounts.spotify.com/api/token",

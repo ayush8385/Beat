@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-  API_CONSTANTS,
-  client_id,
-  client_secret,
-  redirect_uri,
-} from "../constants";
+import { API_CONSTANTS, client_id, client_secret } from "../constants";
 import { useNavigate } from "react-router-dom";
 
-const useFetchAccessToken = ({fetchOnLoad=false}={}) => {
+const useFetchAccessToken = () => {
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState(
     localStorage.getItem("access_token")
@@ -19,11 +14,11 @@ const useFetchAccessToken = ({fetchOnLoad=false}={}) => {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Basic " + btoa(client_id + ":" + client_secret),
+        Authorization: "Basic " + btoa(process.env.REACT_APP_CLIENT_ID + ":" + process.env.REACT_APP_CLIENT_SECRET),
       },
       body: new URLSearchParams({
         code: code,
-        redirect_uri: encodeURI(redirect_uri),
+        redirect_uri: encodeURI(process.env.REACT_APP_REDIRECT_URI),
         grant_type: "authorization_code",
       }),
     })
@@ -53,7 +48,7 @@ const useFetchAccessToken = ({fetchOnLoad=false}={}) => {
     code = urlParams.get("code");
     const access_token = localStorage.getItem("access_token");
     if (!access_token) {
-      if (code && fetchOnLoad) {
+      if (code) {
         fetchAccessToken(code);
       } else {
         navigate("/login");
@@ -61,7 +56,7 @@ const useFetchAccessToken = ({fetchOnLoad=false}={}) => {
     } else {
       setLoading(false);
     }
-  }, [fetchOnLoad]);
+  }, []);
   return { accessToken, loading };
 };
 export default useFetchAccessToken;
