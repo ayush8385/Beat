@@ -1,0 +1,12 @@
+.viewMoreBg {
+    padding: 0;
+    margin: 0;
+    font-family: "Oxygen";
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: inset 8px 8px 20px rgba(0, 0, 0, 0.331),
+      inset -8px -8px 20px rgba(0, 0, 0, 0.163);
+      cursor: pointer;
+  }

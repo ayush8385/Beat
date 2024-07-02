@@ -1,0 +1,20 @@
+.menuBtnBg {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: inset 8px 8px 20px rgba(0, 0, 0, 0.331),
+    inset -8px -8px 20px rgba(0, 0, 0, 0.163);
+    cursor: pointer;
+}
+.searchBox {
+  height: 22px;
+  width: 180px;
+  background: rgba(0, 0, 0, 0.343);
+  color: white;
+  border: none;
+  background-image: url("../../assets/png//search.png");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px 20px;
+  padding-right: 40px;
+  outline: none;
+}

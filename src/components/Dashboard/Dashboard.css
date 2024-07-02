@@ -1,0 +1,15 @@
+
+.container {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  /* backdrop-filter: blur(100px); */
+  background: rgba(0,0,0,0.6);
+  box-shadow: 30px 30px 70px rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+}
