@@ -1,14 +1,11 @@
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetchAccessToken from "../../hooks/useFetchAccessToken";
 import { useEffect, useState } from "react";
 import { API_CONSTANTS } from "../../constants";
-import { getYear } from "../../utils";
 import Tracks from "../Album/Tracks";
 import Logo from "../Logo";
 
 const PlaylistDetail = () => {
-  const context = useOutletContext();
-  const { onPlayClick } = context;
   const { accessToken } = useFetchAccessToken();
   const [playlistData, setPlaylistData] = useState(null);
   const [tracks, setTracks] = useState(null);
@@ -100,20 +97,6 @@ const PlaylistDetail = () => {
                   >
                     {playlistData?.name}
                   </p>
-                  <p
-                    style={{
-                      color: "white",
-                      fontFamily: "Oxygen",
-                      fontWeight: 700,
-                      fontSize: 14,
-                      opacity: 0.8,
-                      margin: 0,
-                      padding: 0,
-                      marginTop: 5,
-                    }}
-                  >
-                    {getYear(playlistData?.release_date)} | {playlistData?.label}
-                  </p>
                 </div>
                 <div
                   style={{
@@ -194,7 +177,7 @@ const PlaylistDetail = () => {
               height: "100%",
             }}
           >
-            <Tracks onPlayClick={(id) => onPlayClick(id)} tracks={tracks} type={"playlist"} />
+            <Tracks tracks={tracks} type={"playlist"} />
           </div>
         </>
       ) : (

@@ -8,8 +8,6 @@ import { getYear } from "../../utils";
 import Artists from "./Artists";
 import Tracks from "./Tracks";
 const AlbumDetail = () => {
-  const context = useOutletContext();
-  const { onPlayClick } = context;
   const { accessToken } = useFetchAccessToken();
   const [album, setAlbum] = useState(null);
   const [tracks, setTracks] = useState(null);
@@ -193,7 +191,7 @@ const AlbumDetail = () => {
               height: "100%",
             }}
           >
-            <Tracks onPlayClick={(id) => onPlayClick(id)} tracks={tracks} />
+            <Tracks tracks={tracks} />
           </div>
         </>
       ) : (

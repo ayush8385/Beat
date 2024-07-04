@@ -6,7 +6,7 @@
   /* backdrop-filter: blur(100px); */
   background: rgba(0,0,0,0.6);
   box-shadow: 30px 30px 70px rgba(0, 0, 0, 0.7);
-  border-radius: 20px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   overflow: hidden;

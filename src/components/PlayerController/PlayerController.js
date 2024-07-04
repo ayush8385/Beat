@@ -5,14 +5,15 @@ import ProgressBar from "./ProgressBar";
 import { API_CONSTANTS } from "../../constants";
 import useFetchAccessToken from "../../hooks/useFetchAccessToken";
 import Logo from "../Logo";
-import { PlayerContext } from "../contexts/PlayerContext";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import { playTrack } from "../../api";
 import { useNavigate } from "react-router-dom";
-const PlayerController = ({ trackId }) => {
+const PlayerController = () => {
   const { accessToken } = useFetchAccessToken();
   const [trackData, setTrackData] = useState(null);
   const [trackProgress, resetTrackProgress] = useState(0);
-  const { setOverlayBgUrl, setIsTrackPlaying } = useContext(PlayerContext);
+  const { setOverlayBgUrl, setIsTrackPlaying, trackId, position } =
+    useContext(PlayerContext);
   const navigate = useNavigate();
 
   const getTrackData = (id) => {
@@ -27,7 +28,7 @@ const PlayerController = ({ trackId }) => {
         setTrackData(data);
         playTrack({
           uri: data?.uri,
-          position: 0,
+          position: position,
           accessToken: accessToken,
           handleResponse: (data) => handleResponse(data),
         });
@@ -59,10 +60,10 @@ const PlayerController = ({ trackId }) => {
       {trackData ? (
         <>
           <Controller trackData={trackData} />
-          {trackProgress > 0 ? (
+          {trackProgress > 0 && trackId ? (
             <ProgressBar duration={trackProgress} />
           ) : (
-            <div style={{ height: 8 }}></div>
+            <div style={{ height: 8,      backgroundColor: "rgba(255,255,255,0.1)", }}></div>
           )}
         </>
       ) : (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_CONSTANTS, client_id, client_secret } from "../constants";
+import { API_CONSTANTS } from "../constants";
 import { useNavigate } from "react-router-dom";
 
 const useFetchAccessToken = () => {
@@ -9,7 +9,7 @@ const useFetchAccessToken = () => {
   );
   const navigate = useNavigate();
 
-  const fetchAccessToken = (code) => {
+  const fetchAccessToken = () => {
     fetch(API_CONSTANTS.TOKEN_API, {
       method: "POST",
       headers: {
@@ -17,7 +17,7 @@ const useFetchAccessToken = () => {
         Authorization: "Basic " + btoa(process.env.REACT_APP_CLIENT_ID + ":" + process.env.REACT_APP_CLIENT_SECRET),
       },
       body: new URLSearchParams({
-        code: code,
+        code: localStorage.getItem("code"),
         redirect_uri: encodeURI(process.env.REACT_APP_REDIRECT_URI),
         grant_type: "authorization_code",
       }),
@@ -49,7 +49,8 @@ const useFetchAccessToken = () => {
     const access_token = localStorage.getItem("access_token");
     if (!access_token) {
       if (code) {
-        fetchAccessToken(code);
+        localStorage.setItem("code",code);
+        fetchAccessToken();
       } else {
         navigate("/login");
       }

@@ -3,8 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { PlayerContext } from "./components/contexts/PlayerContext";
-import PlayerContextProvider from "./components/contexts/PlayerContextProvider";
+import PlayerContextProvider from "./contexts/PlayerContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

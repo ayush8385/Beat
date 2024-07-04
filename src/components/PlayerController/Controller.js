@@ -1,14 +1,14 @@
 // import useFetchDevices from "../../hooks/useFetchDevices";
 import { useContext, useEffect, useState } from "react";
 import "./PlayerController.css";
-import { PlayerContext } from "../contexts/PlayerContext";
-import { API_CONSTANTS } from "../../constants";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import useFetchAccessToken from "../../hooks/useFetchAccessToken";
 import { pauseTrack, playTrack } from "../../api";
 const Controller = ({ trackData }) => {
-  const { isTrackPlaying, setIsTrackPlaying } = useContext(PlayerContext);
+  const { isTrackPlaying, setIsTrackPlaying, position } = useContext(PlayerContext);
   const [playStateIcon, setPlayStateIcon] = useState("play");
   const { accessToken } = useFetchAccessToken();
+
   useEffect(() => {
     if (isTrackPlaying) {
       setPlayStateIcon("pause");
@@ -16,10 +16,11 @@ const Controller = ({ trackData }) => {
       setPlayStateIcon("play");
     }
   }, [isTrackPlaying]);
-  const playPauseTrack = () => {
+
+  const playPauseTrack = async () => {
     if (isTrackPlaying) {
       pauseTrack({
-        accessToken: accessToken,
+        accessToken,
         handleResponse: (data) => {
           if (data?.status === 204) {
             setIsTrackPlaying(false);
@@ -29,7 +30,7 @@ const Controller = ({ trackData }) => {
     } else {
       playTrack({
         uri: trackData?.uri,
-        position: 20000,
+        position: position,
         accessToken,
         handleResponse: (data) => {
           if (data?.status === 204) {

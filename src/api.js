@@ -35,3 +35,26 @@ export const pauseTrack = ({ accessToken, handleResponse }) => {
     },
   }).then((data) => handleResponse(data));
 };
+
+export const seekTrack = ({ accessToken, clickPositionMs }) => {
+  return fetch(
+    `${
+      API_CONSTANTS.SEEK_TRACK
+    }?position_ms=${Number(clickPositionMs).toFixed()}&device_id=${localStorage.getItem("deviceId")}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    }
+  )
+    .then((response) => {
+      if(!response.ok){
+        return response.json().then(errorData => {
+          throw new Error(`Error: ${errorData.error.message}`);
+        });
+      }
+      return response;
+    })
+    .catch((error) => console.log(error));
+};

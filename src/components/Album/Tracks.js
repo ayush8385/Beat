@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { msToMinutesAndSeconds } from "../../utils";
+import { PlayerContext } from "../../contexts/PlayerContext";
 
-const Tracks = ({ type = "album", tracks, onPlayClick }= {}) => {
+const Tracks = ({ type = "album", tracks }= {}) => {
+  const { setTrackId,setPosition } = useContext(PlayerContext)
   return (
     <div
       style={{
@@ -18,7 +21,10 @@ const Tracks = ({ type = "album", tracks, onPlayClick }= {}) => {
         return (
           <div
             key={index}
-            onClick={() => onPlayClick(track?.id)}
+            onClick={() =>{
+              setTrackId(track?.id)
+              setPosition(0)
+            }}
             style={{
               marginBottom: 40,
               display: "flex",

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./BgOverlay.css";
-import { PlayerContext } from "../contexts/PlayerContext";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const BgOverlay = () => {

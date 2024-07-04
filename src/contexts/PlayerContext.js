@@ -5,4 +5,8 @@ export const PlayerContext = createContext({
   setOverlayBgUrl: () => {},
   isTrackPlaying: undefined,
   setIsTrackPlaying: () => {},
+  trackId: undefined,
+  setTrackId: () => {},
+  position: undefined,
+  setPosition: () => {},
 });

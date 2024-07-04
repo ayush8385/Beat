@@ -5,15 +5,9 @@ import NavBar from "../NavBar/NavBar";
 import PlayerController from "../PlayerController/PlayerController";
 import useSpotifyPlayback from "../../hooks/useSpotifyPlayback";
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
 const Dashboard = () => {
   const { loading } = useFetchAccessToken({fetchOnLoad:true});
   const { isPlayBackInitialised } = useSpotifyPlayback(!loading);
-  const [trackId, setTrackId] = useState(localStorage.getItem("trackId"));
-  const onPlayClick = (id) => {
-    setTrackId(id);
-  };
-  const propsToPass = { onPlayClick };
 
   if (loading) {
     return (
@@ -30,9 +24,9 @@ const Dashboard = () => {
   return (
     <div className="container">
       <NavBar />
-      <Outlet context={{...propsToPass}} />
+      <Outlet />
       {isPlayBackInitialised && (
-        <PlayerController trackId={trackId} />
+        <PlayerController />
       )}
     </div>
   );
