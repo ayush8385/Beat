@@ -76,8 +76,7 @@ const ProgressBar = ({ duration }) => {
     >
       <div
         ref={progressBarRef}
-        style={{ width: "0%", height: 8, backgroundColor: "red", opacity: 0.6 }}
-      ></div>
+        style={{ width: "0%", height: 8, backgroundColor: "red", opacity: 0.6 }}/>
       <div onClick={handleClick} style={{position:'absolute', cursor:'pointer', width:'100%', backgroundColor:"transparent", height:8, top:0}}/>
     </div>
   );
