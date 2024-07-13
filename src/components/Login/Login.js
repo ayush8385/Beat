@@ -16,7 +16,7 @@ const Login = () => {
   return (
     <div className="loginBox">
       <Logo />
-      <p
+      <h1
         style={{
           fontSize: 22,
           color: "white",
@@ -27,7 +27,7 @@ const Login = () => {
         }}
       >
         Welcome to Beats
-      </p>
+      </h1>
       <div onClick={() => authoriseSpotifyUser()} class="button-box">
         <p>Login With Spotify</p>
         <img
