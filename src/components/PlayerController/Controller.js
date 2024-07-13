@@ -5,10 +5,12 @@ import { PlayerContext } from "../../contexts/PlayerContext";
 import useFetchAccessToken from "../../hooks/useFetchAccessToken";
 import { pauseTrack, playTrack } from "../../api";
 const Controller = ({ trackData }) => {
-  const { isTrackPlaying, setIsTrackPlaying, position } = useContext(PlayerContext);
+  const { isTrackPlaying, setIsTrackPlaying, position } =
+    useContext(PlayerContext);
   const [playStateIcon, setPlayStateIcon] = useState("play");
   const { accessToken } = useFetchAccessToken();
 
+  const artistNames = trackData?.artists?.map((artist) => artist?.name) || [];
   useEffect(() => {
     if (isTrackPlaying) {
       setPlayStateIcon("pause");
@@ -78,25 +80,19 @@ const Controller = ({ trackData }) => {
             {trackData?.name}
           </p>
           <div style={{ display: "flex", marginTop: 3 }}>
-            {trackData?.artists.map((item, ind) => {
-              return (
-                <p
-                  key={ind}
-                  style={{
-                    padding: 0,
-                    margin: 0,
-                    fontSize: 12,
-                    fontFamily: "Oxygen",
-                    fontWeight: 700,
-                    color: "white",
-                    opacity: 0.8,
-                  }}
-                >
-                  {ind > 0 ? ", " : ""}
-                  {item.name}
-                </p>
-              );
-            })}
+            <p
+              style={{
+                padding: 0,
+                margin: 0,
+                fontSize: 12,
+                fontFamily: "Oxygen",
+                fontWeight: 700,
+                color: "white",
+                opacity: 0.8,
+              }}
+            >
+              {artistNames?.join(", ")}
+            </p>
           </div>
         </div>
       </div>

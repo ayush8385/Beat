@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { msToMinutesAndSeconds } from "../../utils";
 import { PlayerContext } from "../../contexts/PlayerContext";
 
-const Tracks = ({ type = "album", tracks }= {}) => {
-  const { setTrackId,setPosition } = useContext(PlayerContext)
+const Tracks = ({ type = "album", tracks } = {}) => {
+  const { setTrackId, setPosition } = useContext(PlayerContext);
   return (
     <div
       style={{
@@ -18,12 +18,14 @@ const Tracks = ({ type = "album", tracks }= {}) => {
         if (type === "playlist") {
           track = track?.track;
         }
+        const trackArtists =
+          track?.artists?.map((artist) => artist?.name) || [];
         return (
           <div
             key={index}
-            onClick={() =>{
-              setTrackId(track?.id)
-              setPosition(0)
+            onClick={() => {
+              setTrackId(track?.id);
+              setPosition(0);
             }}
             style={{
               marginBottom: 40,
@@ -55,25 +57,19 @@ const Tracks = ({ type = "album", tracks }= {}) => {
                   {track?.name}
                 </p>
                 <div style={{ display: "flex" }}>
-                  {track?.artists.map((item, ind) => {
-                    return (
-                      <p
-                        key={ind}
-                        style={{
-                          padding: 0,
-                          margin: 0,
-                          fontSize: 10,
-                          fontFamily: "Oxygen",
-                          fontWeight: 700,
-                          color: "white",
-                          opacity: 0.8,
-                        }}
-                      >
-                        {ind > 0 ? ", " : ""}
-                        {item.name}
-                      </p>
-                    );
-                  })}
+                  <p
+                    style={{
+                      padding: 0,
+                      margin: 0,
+                      fontSize: 10,
+                      fontFamily: "Oxygen",
+                      fontWeight: 700,
+                      color: "white",
+                      opacity: 0.8,
+                    }}
+                  >
+                    {trackArtists?.join(", ")}
+                  </p>
                 </div>
               </div>
             </div>
